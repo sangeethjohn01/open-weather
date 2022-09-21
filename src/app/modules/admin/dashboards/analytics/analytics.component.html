@@ -1,0 +1,58 @@
+<div class="flex flex-col flex-auto w-full">
+    <div align="center">
+        <mat-icon svgIcon="feather:cloud-snow"></mat-icon>
+        <mat-icon svgIcon="feather:cloud-drizzle"></mat-icon>
+        <mat-icon svgIcon="feather:cloud-lightning"></mat-icon>
+        <mat-icon svgIcon="feather:cloud-off"></mat-icon>
+        <mat-icon svgIcon="feather:cloud-rain"></mat-icon>
+        <mat-icon svgIcon="feather:cloud-snow"></mat-icon>
+    </div>
+    <div mat-dialog-content>
+        <mat-tab-group>
+            <mat-tab label="Forecast">
+                <p>{{data.latLong.lat}}</p>
+                 <p>{{data.latLong.lng}}</p>
+            </mat-tab>
+            <mat-tab label="Current">
+                <p>{{data.latLong.lat}}</p>
+                <p>{{data.latLong.lng}}</p>
+            </mat-tab>
+            <mat-tab label="Air Pollution">
+                <div class="flex flex-col my-2">
+                    <div align="center">Unit (μg/m3)</div>
+                    <div class="my-2">
+                        <div>Concentration of CO (Carbon monoxide)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.co}}</div>
+                    </div>
+                    <div class="my-2">
+                        <div>Concentration of NO2 (Nitrogen dioxide)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.no2}}</div>
+                    </div>
+                    <div class="my-2">
+                        <div>Concentration of O3 (Ozone)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.o3}}</div>
+                    </div>
+                    <div class="my-2">
+                        <div>Concentration of SO2 (Sulphur dioxide)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.so2}}</div>
+                    </div>
+                    <div class="my-2">
+                        <div>Concentration of PM2.5 (Fine particles matter)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.pm2_5}}</div>
+                    </div>
+                    <div class="my-2">
+                        <div>Concentration of PM10 (Coarse particulate matter)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.pm10}}</div>
+                    </div>
+                    <div class="my-2">
+                        <div>Concentration of NH3 (Ammonia)</div>
+                        <div class="text-secondary text-md">{{airPollutionData.nh3}}</div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+      </div>
+      <div mat-dialog-actions align="center">
+        <button mat-button color="primary" (click)="onNoClick()">CLOSE</button>
+      </div>
+</div>
