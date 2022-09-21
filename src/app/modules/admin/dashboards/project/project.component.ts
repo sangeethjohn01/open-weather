@@ -59,22 +59,14 @@ export class ProjectComponent implements OnDestroy, AfterViewInit
             searchBox.setBounds(map.getBounds());
         });
 
-        let markers = [];
-
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener("places_changed", () => {
             const places = searchBox.getPlaces();
 
             if (places.length == 0) {
-            return;
+                return;
             }
-
-            // Clear out the old markers.
-            markers.forEach((marker) => {
-            marker.setMap(null);
-            });
-            markers = [];
 
             // For each place, get the icon, name and location.
             const bounds = new google.maps.LatLngBounds();
@@ -93,16 +85,6 @@ export class ProjectComponent implements OnDestroy, AfterViewInit
                 scaledSize: new google.maps.Size(25, 25),
             };
 
-            // Create a marker for each place.
-            markers.push(
-                new google.maps.Marker({
-                map,
-                icon,
-                title: place.name,
-                position: place.geometry.location,
-                })
-            );
-
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
@@ -114,6 +96,7 @@ export class ProjectComponent implements OnDestroy, AfterViewInit
         });
     }
 
+    // Dialog box to show all the weather related data
     openDialog(latLong): void {
         const dialogRef = this.dialog.open(AnalyticsComponent, {
           data: {latLong: latLong},

@@ -9,46 +9,92 @@
     </div>
     <div mat-dialog-content>
         <mat-tab-group>
-            <mat-tab label="Forecast">
-                <p>{{data.latLong.lat}}</p>
-                 <p>{{data.latLong.lng}}</p>
-            </mat-tab>
-            <mat-tab label="Current">
-                <p>{{data.latLong.lat}}</p>
-                <p>{{data.latLong.lng}}</p>
-            </mat-tab>
-            <mat-tab label="Air Pollution">
+            <ng-template #noData>
                 <div class="flex flex-col my-2">
-                    <div align="center">Unit (μg/m3)</div>
-                    <div class="my-2">
-                        <div>Concentration of CO (Carbon monoxide)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.co}}</div>
-                    </div>
-                    <div class="my-2">
-                        <div>Concentration of NO2 (Nitrogen dioxide)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.no2}}</div>
-                    </div>
-                    <div class="my-2">
-                        <div>Concentration of O3 (Ozone)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.o3}}</div>
-                    </div>
-                    <div class="my-2">
-                        <div>Concentration of SO2 (Sulphur dioxide)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.so2}}</div>
-                    </div>
-                    <div class="my-2">
-                        <div>Concentration of PM2.5 (Fine particles matter)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.pm2_5}}</div>
-                    </div>
-                    <div class="my-2">
-                        <div>Concentration of PM10 (Coarse particulate matter)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.pm10}}</div>
-                    </div>
-                    <div class="my-2">
-                        <div>Concentration of NH3 (Ammonia)</div>
-                        <div class="text-secondary text-md">{{airPollutionData.nh3}}</div>
-                    </div>
+                    <div align="center">No Data Available !!!</div>
                 </div>
+            </ng-template>
+            <!-- Forecast weather related data -->
+            <mat-tab label="Forecast">
+                <ng-container *ngIf="forecast; else noData" >
+                    <div class="flex flex-col my-2">
+                        <div class="my-2">
+                            <div>City Name</div>
+                            <div class="text-secondary text-md"><mat-icon svgIcon="feather:home"></mat-icon> {{forecast.name}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Country</div>
+                            <div class="text-secondary text-md"><mat-icon svgIcon="feather:globe"></mat-icon> {{forecast.country}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Population</div>
+                            <div class="text-secondary text-md"><mat-icon svgIcon="feather:users"></mat-icon> {{forecast.population}}</div>
+                        </div>
+                    </div>
+                </ng-container>
+            </mat-tab>
+            <!-- Current weather related data -->
+            <mat-tab label="Current">
+                <ng-container *ngIf="current; else noData" >
+                    <div class="flex flex-col my-2">
+                        <div class="my-2">
+                            <div>Current Weather</div>
+                            <div class="text-secondary text-md">{{current.weather.main}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Current Weather Description</div>
+                            <div class="text-secondary text-md">{{current.weather.description}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Temperature</div>
+                            <div class="text-secondary text-md">{{current.main.temp}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Minimum Temperature</div>
+                            <div class="text-secondary text-md"><mat-icon svgIcon="feather:chevrons-down"></mat-icon> {{current.main.temp_min}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Maximum Temperature</div>
+                            <div class="text-secondary text-md"><mat-icon svgIcon="feather:chevrons-up"></mat-icon> {{current.main.temp_max}}</div>
+                        </div>
+                    </div>
+                </ng-container>
+            </mat-tab>
+            <!-- Air pollution related data -->
+            <mat-tab label="Air Pollution">
+                <ng-container *ngIf="airPollutionData; else noData" >
+                    <div class="flex flex-col my-2">
+                        <div align="center">Unit (μg/m3)</div>
+                        <div class="my-2">
+                            <div>Concentration of CO (Carbon monoxide)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.co}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Concentration of NO2 (Nitrogen dioxide)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.no2}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Concentration of O3 (Ozone)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.o3}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Concentration of SO2 (Sulphur dioxide)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.so2}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Concentration of PM2.5 (Fine particles matter)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.pm2_5}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Concentration of PM10 (Coarse particulate matter)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.pm10}}</div>
+                        </div>
+                        <div class="my-2">
+                            <div>Concentration of NH3 (Ammonia)</div>
+                            <div class="text-secondary text-md">{{airPollutionData.nh3}}</div>
+                        </div>
+                    </div>
+                </ng-container>
             </mat-tab>
         </mat-tab-group>
       </div>
