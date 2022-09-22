@@ -15,6 +15,7 @@ import { AnalyticsComponent } from 'app/modules/admin/dashboards/analytics/analy
 import { analyticsRoutes } from 'app/modules/admin/dashboards/analytics/analytics.routing';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
         NgApexchartsModule,
         SharedModule,
         MatTabsModule,
-        MatGridListModule
+        MatGridListModule,
+        MatProgressSpinnerModule
     ]
 })
 export class AnalyticsModule
