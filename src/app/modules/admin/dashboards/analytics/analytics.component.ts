@@ -27,6 +27,8 @@ export class AnalyticsComponent implements OnInit
         // api call to get weather related data, using forkJoin because all three api's has same input
         this._AnalyticsService.getWeatherData(this.data.latLong.lat, this.data.latLong.lng).subscribe(resData=>{
             try {
+                this.dataLoaded = false;
+
                 let forecast = resData[0];
                 let current = resData[1];
                 let airPollutionData = resData[2];
@@ -36,8 +38,6 @@ export class AnalyticsComponent implements OnInit
                 this.current["weather"] = current["weather"][0];
                 this.current["main"] = current["main"];
                 this.airPollutionData = airPollutionData["list"][0]["components"];
-
-                this.dataLoaded = false;
             } catch (error) {
                 this.dataLoaded = false;
                 console.log("Something wrong happened!") 
