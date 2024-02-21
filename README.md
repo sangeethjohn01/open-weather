@@ -10,5 +10,3 @@ Open Weather App (Angular Project)
     d. Make sure port 4200 and 3000 is free then start the project,
         npm start
     e. Once it is compiled, go to browser and enter the url localhost:4200
-
-#### Detailed instructions with screenshot will be send via email
